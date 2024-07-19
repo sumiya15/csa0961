@@ -1,0 +1,27 @@
+abstract class Animal {
+    abstract void move();
+}
+
+class Bird extends Animal {
+    @Override
+    void move() {
+        System.out.println("The bird flies.");
+    }
+}
+
+class Fish extends Animal {
+    @Override
+    void move() {
+        System.out.println("The fish swims.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal bird = new Bird();
+        Animal fish = new Fish();
+
+        bird.move();
+        fish.move();
+    }
+}
