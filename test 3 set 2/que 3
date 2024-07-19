@@ -1,0 +1,38 @@
+class LibraryItem {
+    public String getItemDetails() {
+        return "Library Item";
+    }
+}
+
+class Book extends LibraryItem {
+    @Override
+    public String getItemDetails() {
+        return "Book: Title, Author, ISBN";
+    }
+}
+
+class Magazine extends LibraryItem {
+    @Override
+    public String getItemDetails() {
+        return "Magazine: Title, Issue, Date";
+    }
+}
+
+class DVD extends LibraryItem {
+    @Override
+    public String getItemDetails() {
+        return "DVD: Title, Director, Duration";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Book book = new Book();
+        Magazine magazine = new Magazine();
+        DVD dvd = new DVD();
+
+        System.out.println(book.getItemDetails());
+        System.out.println(magazine.getItemDetails());
+        System.out.println(dvd.getItemDetails());
+    }
+}
