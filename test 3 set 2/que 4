@@ -1,0 +1,41 @@
+class Product {
+    public double getFinalPrice(double price) {
+        return price;
+    }
+}
+
+class Electronics extends Product {
+    @Override
+    public double getFinalPrice(double price) {
+        double discount = 0.10;
+        return price * (1 - discount);
+    }
+}
+
+class Clothing extends Product {
+    @Override
+    public double getFinalPrice(double price) {
+        double discount = 0.20;
+        return price * (1 - discount);
+    }
+}
+
+class Grocery extends Product {
+    @Override
+    public double getFinalPrice(double price) {
+        double discount = 0.05;
+        return price * (1 - discount);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Electronics electronics = new Electronics();
+        Clothing clothing = new Clothing();
+        Grocery grocery = new Grocery();
+
+        System.out.println("Final Price of Electronics: " + electronics.getFinalPrice(1000));
+        System.out.println("Final Price of Clothing: " + clothing.getFinalPrice(500));
+        System.out.println("Final Price of Grocery: " + grocery.getFinalPrice(200));
+    }
+}
