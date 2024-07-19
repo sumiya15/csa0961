@@ -1,0 +1,27 @@
+abstract class Person {
+    abstract void greet();
+}
+
+class Student extends Person {
+    @Override
+    void greet() {
+        System.out.println("Hello, I'm a student.");
+    }
+}
+
+class Teacher extends Person {
+    @Override
+    void greet() {
+        System.out.println("Hello, I'm a teacher.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person student = new Student();
+        Person teacher = new Teacher();
+
+        student.greet();
+        teacher.greet();
+    }
+}
