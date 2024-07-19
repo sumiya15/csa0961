@@ -1,0 +1,20 @@
+class Employee:
+    def getSalary(self):
+        return 0
+
+class Manager(Employee):
+    def getSalary(self, bonus=0):
+        base_salary = 80000
+        return base_salary + bonus
+
+class Developer(Employee):
+    def getSalary(self, bonus=0):
+        base_salary = 60000
+        return base_salary + bonus
+
+manager = Manager()
+developer = Developer()
+print("Manager Salary:", manager.getSalary())
+print("Manager Salary with Bonus:", manager.getSalary(5000))
+print("Developer Salary:", developer.getSalary())
+print("Developer Salary with Bonus:", developer.getSalary(3000))
