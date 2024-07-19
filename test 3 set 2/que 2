@@ -1,0 +1,56 @@
+class Calculator {
+    public double calculate(double a, double b, String operation) {
+        switch (operation) {
+            case "add":
+                return a + b;
+            case "subtract":
+                return a - b;
+            case "multiply":
+                return a * b;
+            case "divide":
+                return b != 0 ? a / b : Double.NaN;
+            default:
+                return Double.NaN;
+        }
+    }
+}
+
+class ScientificCalculator extends Calculator {
+    @Override
+    public double calculate(double a, double b, String operation) {
+        switch (operation) {
+            case "power":
+                return Math.pow(a, b);
+            case "modulus":
+                return a % b;
+            default:
+                return super.calculate(a, b, operation);
+        }
+    }
+}
+
+class FinancialCalculator extends Calculator {
+    @Override
+    public double calculate(double a, double b, String operation) {
+        switch (operation) {
+            case "interest":
+                return a * (1 + b / 100);
+            case "annuity":
+                return a * Math.pow((1 + b / 100), b);
+            default:
+                return super.calculate(a, b, operation);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        ScientificCalculator sciCalc = new ScientificCalculator();
+        FinancialCalculator finCalc = new FinancialCalculator();
+
+        System.out.println("Addition: " + calc.calculate(10, 5, "add"));
+        System.out.println("Power: " + sciCalc.calculate(2, 3, "power"));
+        System.out.println("Interest: " + finCalc.calculate(1000, 5, "interest"));
+    }
+}
