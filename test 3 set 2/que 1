@@ -1,20 +1,43 @@
-class Employee:
-    def getSalary(self):
-        return 0
+class Employee {
+    public int getSalary() {
+        return 0;
+    }
+}
 
-class Manager(Employee):
-    def getSalary(self, bonus=0):
-        base_salary = 80000
-        return base_salary + bonus
+class Manager extends Employee {
+    @Override
+    public int getSalary() {
+        int baseSalary = 80000;
+        return baseSalary;
+    }
 
-class Developer(Employee):
-    def getSalary(self, bonus=0):
-        base_salary = 60000
-        return base_salary + bonus
+    public int getSalary(int bonus) {
+        int baseSalary = 80000;
+        return baseSalary + bonus;
+    }
+}
 
-manager = Manager()
-developer = Developer()
-print("Manager Salary:", manager.getSalary())
-print("Manager Salary with Bonus:", manager.getSalary(5000))
-print("Developer Salary:", developer.getSalary())
-print("Developer Salary with Bonus:", developer.getSalary(3000))
+class Developer extends Employee {
+    @Override
+    public int getSalary() {
+        int baseSalary = 60000;
+        return baseSalary;
+    }
+
+    public int getSalary(int bonus) {
+        int baseSalary = 60000;
+        return baseSalary + bonus;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Manager manager = new Manager();
+        Developer developer = new Developer();
+
+        System.out.println("Manager Salary: " + manager.getSalary());
+        System.out.println("Manager Salary with Bonus: " + manager.getSalary(5000));
+        System.out.println("Developer Salary: " + developer.getSalary());
+        System.out.println("Developer Salary with Bonus: " + developer.getSalary(3000));
+    }
+}
