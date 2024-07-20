@@ -1,0 +1,90 @@
+import java.util.Scanner;
+
+abstract class BankAccount {
+    double balance;
+    BankAccount(double initialBalance) {
+        this.balance = initialBalance;
+    }
+    void deposit(double amount) {
+        balance += amount;
+    }
+    abstract boolean withdraw(double amount);
+}
+
+class SavingsAccount extends BankAccount {
+    double withdrawalLimit;
+    SavingsAccount(double initialBalance, double withdrawalLimit) {
+        super(initialBalance);
+        this.withdrawalLimit = withdrawalLimit;
+    }
+    @Override
+    boolean withdraw(double amount) {
+        if (amount <= balance && amount <= withdrawalLimit) {
+            balance -= amount;
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+class CheckingAccount extends BankAccount {
+    double transactionFee;
+    CheckingAccount(double initialBalance, double transactionFee) {
+        super(initialBalance);
+        this.transactionFee = transactionFee;
+    }
+    @Override
+    boolean withdraw(double amount) {
+        if (amount + transactionFee <= balance) {
+            balance -= (amount + transactionFee);
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter initial balance for Savings Account and withdrawal limit:");
+        double savingsInitialBalance = scanner.nextDouble();
+        double savingsWithdrawalLimit = scanner.nextDouble();
+        BankAccount savings = new SavingsAccount(savingsInitialBalance, savingsWithdrawalLimit);
+
+        System.out.println("Enter initial balance for Checking Account and transaction fee:");
+        double checkingInitialBalance = scanner.nextDouble();
+        double checkingTransactionFee = scanner.nextDouble();
+        BankAccount checking = new CheckingAccount(checkingInitialBalance, checkingTransactionFee);
+
+        System.out.println("Enter amount to deposit into Savings Account:");
+        double savingsDeposit = scanner.nextDouble();
+        savings.deposit(savingsDeposit);
+        System.out.println("Savings Account balance: " + savings.balance);
+
+        System.out.println("Enter amount to withdraw from Savings Account:");
+        double savingsWithdraw = scanner.nextDouble();
+        if (savings.withdraw(savingsWithdraw)) {
+            System.out.println("Withdrawal successful. Savings Account balance: " + savings.balance);
+        } else {
+            System.out.println("Withdrawal failed. Savings Account balance: " + savings.balance);
+        }
+
+        System.out.println("Enter amount to deposit into Checking Account:");
+        double checkingDeposit = scanner.nextDouble();
+        checking.deposit(checkingDeposit);
+        System.out.println("Checking Account balance: " + checking.balance);
+
+        System.out.println("Enter amount to withdraw from Checking Account:");
+        double checkingWithdraw = scanner.nextDouble();
+        if (checking.withdraw(checkingWithdraw)) {
+            System.out.println("Withdrawal successful. Checking Account balance: " + checking.balance);
+        } else {
+            System.out.println("Withdrawal failed. Checking Account balance: " + checking.balance);
+        }
+
+        scanner.close();
+    }
+}
