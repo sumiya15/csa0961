@@ -1,0 +1,54 @@
+import java.util.*;
+public class ExpenseTracker {
+    private List<Expense> expenses = new ArrayList<>();
+    public void addExpense(String description, double amount, String category) {
+        expenses.add(new Expense(description, amount, category));
+    }
+    public List<Expense> viewExpensesByCategory(String category) {
+        List<Expense> expensesByCategory = new ArrayList<>();
+        for (Expense expense : expenses) {
+            if (expense.getCategory().equals(category)) {
+                expensesByCategory.add(expense);
+            }
+        }
+        return expensesByCategory;
+    }
+    public void generateExpenseReport() {
+        for (Expense expense : expenses) {
+            System.out.println(expense.getDescription() + " - $" + expense.getAmount());
+        }
+    }
+    private static class Expense {
+        private String description;
+        private double amount;
+        private String category;
+        public Expense(String description, double amount, String category) {
+            this.description = description;
+            this.amount = amount;
+            this.category = category;
+        }
+        public String getDescription() {
+            return description;
+        }
+        public double getAmount() {
+            return amount;
+        }
+        public String getCategory() {
+            return category;
+        }
+    }
+    public static void main(String[] args) {
+        ExpenseTracker tracker = new ExpenseTracker();
+        tracker.addExpense("Groceries", 160.0, "Food");
+        tracker.addExpense("Internet Bill", 50.0, "Utilities");
+        tracker.addExpense("Dinner", 200.0, "Food");
+        System.out.println("Expenses by Food category:");
+        List<Expense> foodExpenses = tracker.viewExpensesByCategory("Food");
+        for (Expense expense : foodExpenses) {
+            System.out.println(expense.getDescription() + " - $" + expense.getAmount());
+        }
+
+        System.out.println("\nExpense Report:");
+        tracker.generateExpenseReport();
+    }
+}
