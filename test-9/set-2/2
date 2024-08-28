@@ -1,0 +1,21 @@
+import java.util.*;
+import java.util.regex.*;
+
+public class URLExtractor {
+    public static List<String> extractURLs(String text) {
+        List<String> result = new ArrayList<>();
+        String regex = "\\b(http|https)://[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)+\\S*\\b";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            result.add(matcher.group());
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        String text = "Visit https://www.example.com and http://www.test.com for more information.";
+        List<String> expected = Arrays.asList("https://www.example.com", "http://www.test.com");
+        System.out.println(extractURLs(text).equals(expected)); // true
+    }
+}
