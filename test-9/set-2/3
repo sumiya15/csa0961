@@ -1,0 +1,13 @@
+public class TimeValidator {
+    public static boolean isValidTime(String time) {
+        String regex = "([01]\\d|2[0-3]):[0-5]\\d";
+        return time.matches(regex);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isValidTime("23:59")); // true
+        System.out.println(isValidTime("00:00")); // true
+        System.out.println(isValidTime("24:00")); // false
+        System.out.println(isValidTime("12:60")); // false
+    }
+}
